@@ -9,7 +9,7 @@ module tb_mult_Nbit;
     logic [N-1:0] B;
     logic [(M+N)-1:0] Prod; //Produkt M+N , undviker ofv & ufv
 
-mult_Nbit#(N) dut (
+mult_mnbit#(N) dut (
                     .A(A),
                     .B(B),
                     .Prod(Prod)
