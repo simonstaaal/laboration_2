@@ -18,7 +18,7 @@ mult_Nbit#(N) dut (
    initial begin
 
         // 
-        A = 1;
+        A = 1;  
         B = 6;
         #30;
 
