@@ -63,6 +63,6 @@ module mult_mnbit #(parameter M = 4, parameter N = 4)(
 			assign product[i+1] = adder_sum[i][0];
 		end
 	endgenerate
-	assign product [M+N-1:M-1] = {co[adder_num-1], adder_sum[adder_num-1]};
+	assign product [M+N-1: N] = {co[adder_num-1], adder_sum[adder_num-1][adder_width-1:1]};
 
 endmodule
