@@ -21,4 +21,7 @@ module rca_nbit_mux #(parameter N = 4)(
             );
         end
     endgenerate
+
+    assign cout = C[N];
+    
 endmodule
