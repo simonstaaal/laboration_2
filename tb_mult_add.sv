@@ -58,7 +58,7 @@ initial begin
     a4 = 4'd15;
     a5 = 4'd15;
     a6 = 4'd15;
-    a7 = 4'd15;
+    a7 = 4'd15; 
     #20;
 
 end
