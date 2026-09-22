@@ -14,7 +14,7 @@ module mult_mnbit #(parameter M = 4, parameter N = 4)(
 	logic [adder_width-1:0] term_b [adder_num-1:0];
 
 	
-	logic [M-1:0] a_inv;
+	logic [M-1:0] a_inv; 
 	logic [N-1:0] b_inv;
 
 	logic [M-1:0] a_out;
@@ -27,7 +27,7 @@ module mult_mnbit #(parameter M = 4, parameter N = 4)(
 	
 
 	rca_Nbit_co  #(M) inv_a( // Two's complement of A
-		.A(~(a[M-1 :0])),
+		.A(~(a[M-1 :0])), 
 		.B({M{1'b0}}), // M stycken 0:or i en "array"
 		.cin(1),
 		.Sum(a_inv),
@@ -46,14 +46,14 @@ module mult_mnbit #(parameter M = 4, parameter N = 4)(
     mux2to1_Nbit #(M) a_mux(
 		.A(a_inv[M-1:0]), //Inverterade A
 		.B(a[M-1:0]), //Vanliga A
-		.s(a[M-1]),
+		.s(a[M-1]), // MSB == 1 NEGATIVT
 		.Y(a_out)
 	);
 
 	    mux2to1_Nbit #(N) b_mux(
 		.A(b_inv[N-1:0]), //Inverterade B
 		.B(b[N-1:0]), //Vanliga B
-		.s(b[N-1]),
+		.s(b[N-1]), // MSB == 1 NEGATIVT 
 		.Y(b_out)
 	);
 
@@ -116,13 +116,13 @@ module mult_mnbit #(parameter M = 4, parameter N = 4)(
 		.co()
 	);
 
-	xor2_delay xor_u(
+	xor2_delay xor_u( // Om de är olika så blir produkten negativ
 		.a(a[M-1]),
 		.b(b[N-1]),
 		.y(is_prod_inv)
 	);
 
-	mux2to1_Nbit #(M+N) prod_mux(
+	mux2to1_Nbit #(M+N) prod_mux( // Vi inverterar produkten 
 		.A(product_inv[M+N-1 : 0]), // Inverterade produkt
 		.B(product[M+N-1 : 0]),    //  Vanliga A
 		.s(is_prod_inv),
