@@ -3,9 +3,9 @@
 module tb_mult_Nbit;
 
     parameter M = 4; //A
-    parameter N =4; //B
+    parameter N = 4; //B
     
-    logic [N-1:0] A;
+    logic [M-1:0] A;
     logic [N-1:0] B;
     logic [(M+N)-1:0] Prod; //Produkt M+N , undviker ofv & ufv
 
